@@ -82,9 +82,9 @@ app.post('/api/verify-and-save', async (req, res) => {
       delete otpStorage[email]; 
       res.status(200).json({ message: "All details verified and saved to MongoDB!" });
     } catch (err) {
-      console.error("Database Save Error:", err);
-      res.status(500).json({ error: "Error saving to database" });
-    }
+  console.error("❌ EMAIL ERROR:", err);
+  res.status(500).json({ error: err.message });
+}
   } else {
     res.status(400).json({ error: "Invalid OTP code" });
   }
